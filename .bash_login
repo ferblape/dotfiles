@@ -1,0 +1,127 @@
+export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/lib/ruby/gems/1.8/gems/railsbench-0.9.2/bin:/usr/local/lib/ruby/gems/1.8/gems/railsbench-0.9.2/script:/usr/local/pgsql/bin:$PATH"
+export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/proyectos/windchime-stats/node_modules/forever/bin/:$PATH
+export EDITOR=/usr/bin/mate
+export NODE_PATH=~/.npm/
+export LC_CTYPE=en_US.UTF-8
+
+alias sublime='open /Applications/Sublime\ Text\ 2.app/'
+alias dns='sudo lookupd -flushcache'
+alias barracuda='ssh barman@barracuda'
+alias todo='mate /Users/fernando/Dropbox/Documentos/trabajo/todo.tasks'
+alias actuable='cd /users/fernando/proyectos/actuable'
+alias apache='mate /etc/apache2/users/fernando.conf'
+alias hactuable='ssh www-data@178.79.171.223'
+alias gate='ssh -l blat gate201'
+alias toldo='cd /users/fernando/proyectos/toldo; rvm use ruby-1.9.3-p0-perf@toldo'
+alias prowellness='cd /users/fernando/proyectos/prowellness'
+alias rake='bin/rake'
+alias gfo='git fetch origin'
+alias gp='git fo && git re && git push'
+alias gpsd='git fo && git re && git push && cap staging deploy'
+alias gfr='git fo && git re'
+alias grc='git rebase --continue'
+alias gst='git status'
+
+# Setting PATH for MacPython 2.5
+# The orginal version is saved in .bash_login.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+export PATH
+NTA=$HOME/nta/current
+export PATH=$NTA/bin:$PATH
+export PYTHONPATH=$NTA/lib/python2.4/site-packages:$PYTHONPATH
+
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
+# Git
+alias gl="git log --pretty=oneline"
+
+# Use Changes.app for git diffs (nice when diffing single files and folders)
+function gitdiff {
+  [ $# -eq 7 ] && /usr/bin/env chdiff --wait "$2" "$5"
+}
+function giff {
+  export GIT_EXTERNAL_DIFF="gitdiff"
+  git diff "$1"
+  export -n GIT_EXTERNAL_DIFF
+}
+
+function __my_rvm_ruby_version {
+  local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
+  [ "$gemset" != "" ] && gemset="@$gemset"
+  local version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}')
+  [ "$version" == "1.8.7" ] && version=""
+  local full="$version$gemset"
+  [ "$full" != "" ] && echo "$full "
+}
+
+##### EXEC ###################################################################
+
+# MacPorts bash_completion
+# Load Git completion stuff from git-completion
+# http://repo.or.cz/w/git.git?a=blob_plain;f=contrib/completion/git-completion.bash
+source bin/git-completion.bash
+export GIT_PS1_SHOWDIRTYSTATE='true'
+# completion support for the github gem
+complete -o default -o nospace -F _git gh
+
+##### COLORS #################################################################
+
+# CLI & Prompt colors
+export CLICOLOR=true
+# a black
+# b red
+# c green
+# d brown
+# e blue
+# f magenta
+# g cyan
+# h light grey
+# A bold black, usually shows up as dark grey
+# B bold red
+# C bold green
+# D bold brown, usually shows up as yellow
+# E bold blue
+# F bold magenta
+# G bold cyan
+# H bold light grey; looks like bright white
+# x default foreground or background
+# Order: dir - symlink - socket - pipe - exec - block special - char special - exec setuid - exec setgid - public dir sticky bit - public dir no sticky bit
+export LSCOLORS='Dxfxcxdxbxegedabagacad'
+
+# 30m - Black
+# 31m - Red
+# 32m - Green
+# 33m - Yellow
+# 34m - Blue
+# 35m - Purple
+# 36m - Cyan
+# 37m - White
+# Everything else is green...
+# 0 - Normal
+# 1 - Bold
+# 2 -
+function prompt {
+  local BLACK="\[\033[0;30m\]"
+  local RED="\[\033[0;31m\]"
+  local GREEN="\[\033[0;32m\]"
+  local YELLOW="\[\033[0;33m\]"
+  local BLUE="\[\033[0;34m\]"
+  local PURPLE="\[\033[0;35m\]"
+  local CYAN="\[\033[0;36m\]"
+  local WHITE="\[\033[0;37m\]"
+  local WHITEBOLD="\[\033[1;37m\]"
+  export PS1="${WHITE}\u${RED}@${PURPLE}\h ${CYAN}\w${WHITE} \$(__git_ps1 ' (%s)')$ "
+  export PS1="${BLUE}\$(__my_rvm_ruby_version)${PURPLE}\h ${CYAN}\w${WHITE} \$(__git_ps1 '(%s) ')$ "
+}
+
+# Ruby GC
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_FREE_MIN=500000
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+prompt
