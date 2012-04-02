@@ -7,6 +7,7 @@ export LC_CTYPE=en_US.UTF-8
 
 alias dns='sudo lookupd -flushcache'
 alias todo='mvim /Users/fernando/Dropbox/Documentos/trabajo/todo.tasks'
+alias notes='mvim /Users/fernando/Dropbox/Documentos/trabajo/notes.md'
 alias actuable='cd /users/fernando/proyectos/actuable'
 alias apache='mate /etc/apache2/users/fernando.conf'
 alias hactuable='ssh www-data@178.79.171.223'
