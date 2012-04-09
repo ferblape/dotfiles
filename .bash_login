@@ -15,6 +15,7 @@ alias apache='mate /etc/apache2/users/fernando.conf'
 alias hactuable='ssh www-data@178.79.171.223'
 alias toldo='cd /users/fernando/proyectos/toldo; rvm use ruby-1.9.3-p0-perf@toldo'
 alias mtoldo='toldo; mvim Gemfile'
+alias router='sudo ifconfig en1 mtu 1452'
 
 # Setting PATH for MacPython 2.5
 # The orginal version is saved in .bash_login.pysave
