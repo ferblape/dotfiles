@@ -13,3 +13,5 @@
   re = rebase -p origin/master
 [dude]
 	interval = 30
+[core]
+	excludesfile = /Users/fernando/.gitignore_global
