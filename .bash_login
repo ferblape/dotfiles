@@ -112,6 +112,7 @@ function prompt {
   local WHITEBOLD="\[\033[1;37m\]"
   export PS1="${WHITE}\u${RED}@${PURPLE}\h ${CYAN}\w${WHITE} \$(__git_ps1 ' (%s)')$ "
   export PS1="${BLUE}\$(__my_rvm_ruby_version)${PURPLE}\h ${CYAN}\w${WHITE} \$(__git_ps1 '(%s) ')$ "
+  export PS1="\[\033[G\]$PS1"
 }
 
 # Ruby GC
