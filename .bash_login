@@ -13,10 +13,17 @@ alias actuable='cd /users/fernando/proyectos/actuable'
 alias mactuable='actuable; mvim Gemfile'
 alias apache='mate /etc/apache2/users/fernando.conf'
 alias hactuable='ssh www-data@178.79.171.223'
-alias toldo='cd /users/fernando/proyectos/toldo; rvm use ruby-1.9.3-p0-perf@toldo'
-alias mtoldo='toldo; mvim Gemfile'
 alias router='sudo ifconfig en1 mtu 1452'
 alias kandypot='cd /users/fernando/proyectos/kandypot; rvm use 1.9.2@kandypot'
+
+# Aliases Toldo
+alias toldomigration='bin/rake db:migrate; bin/annotate -i; RAILS_ENV=test bin/rake db:migrate'
+alias toldo='cd /users/fernando/proyectos/toldo; rvm use ruby-1.9.3-p0-perf@toldo'
+alias mtoldo='toldo; mvim Gemfile'
+
+# Aliases BeBanjo
+alias movida='cd ~/proyectos/movida'
+alias mmovida='movida; mvim .'
 
 # Setting PATH for MacPython 2.5
 # The orginal version is saved in .bash_login.pysave
@@ -30,7 +37,6 @@ export PYTHONPATH=$NTA/lib/python2.4/site-packages:$PYTHONPATH
 alias gl="git log --pretty=oneline"
 alias gfo='git fetch origin'
 alias gp='git fo && git re && git push'
-alias gpsd='git fo && git re && git push && cap staging deploy'
 alias gfr='git fo && git re'
 alias grc='git rebase --continue'
 alias gst='git status'
