@@ -1,10 +1,12 @@
 export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/lib/ruby/gems/1.8/gems/railsbench-0.9.2/bin:/usr/local/lib/ruby/gems/1.8/gems/railsbench-0.9.2/script:/usr/local/pgsql/bin:$PATH"
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/proyectos/windchime-stats/node_modules/forever/bin/:$PATH
-export EDITOR=/usr/local/bin/mvim
+export EDITOR="/usr/local/bin/mvim -f"
 export NODE_PATH=~/.npm/
 export LC_CTYPE=en_US.UTF-8
 
+alias f='foreman start'
+alias sp='cdir=`pwd`; cd; source .bash_login; cd $cdir;'
 alias dns='sudo lookupd -flushcache'
 alias todo='mvim /Users/fernando/Dropbox/Documentos/trabajo/todo.tasks'
 alias notes='mvim /Users/fernando/Dropbox/Documentos/trabajo/notes.md'
@@ -15,6 +17,7 @@ alias apache='mate /etc/apache2/users/fernando.conf'
 alias hactuable='ssh www-data@178.79.171.223'
 alias router='sudo ifconfig en1 mtu 1452'
 alias kandypot='cd /users/fernando/proyectos/kandypot; rvm use 1.9.2@kandypot'
+alias ree='rvm use ree-1.8.7-2011.03'
 
 # Aliases Toldo
 alias toldomigration='bin/rake db:migrate; bin/annotate -i; RAILS_ENV=test bin/rake db:migrate'
@@ -22,8 +25,16 @@ alias toldo='cd /users/fernando/proyectos/toldo; rvm use ruby-1.9.3-p0-perf@told
 alias mtoldo='toldo; mvim Gemfile'
 
 # Aliases BeBanjo
+alias stable='git checkout stable'
 alias movida='cd ~/proyectos/movida'
 alias mmovida='movida; mvim .'
+alias sequence='cd ~/proyectos/sequence'
+alias msequence='sequence; mvim .'
+alias panorama='cd ~/proyectos/panorama'
+alias mpanorama='panorama; mvim .'
+alias metadata='cd ~/proyectos/metadata'
+alias mmetadata='metadata; mvim .'
+alias sheriff='cd ~/proyectos/sheriff'
 
 # Setting PATH for MacPython 2.5
 # The orginal version is saved in .bash_login.pysave
@@ -40,6 +51,8 @@ alias gp='git fo && git re && git push'
 alias gfr='git fo && git re'
 alias grc='git rebase --continue'
 alias gst='git status'
+alias p='git pull --rebase'
+alias P='git push'
 
 # Use Changes.app for git diffs (nice when diffing single files and folders)
 function gitdiff {
