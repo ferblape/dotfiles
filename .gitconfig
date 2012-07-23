@@ -9,11 +9,62 @@
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   type = cat-file -t
   dump = cat-file -p
-  fo = fetch origin
   re = rebase -p origin/master
 [dude]
 	interval = 30
 [core]
 	excludesfile = /Users/fernando/.gitignore_global
+[color]
+  ui = auto
+[format]
+  # git log uses --pretty format by default, so this changes the default
+  # format
+  # Now log uses --pretty by default
+  # 4436819 [23 hours ago] (Gabe Berke-Williams) One line prompt
+  pretty = %C(magenta reverse)%h%Creset %Cgreen[%cr]%Creset (%an) %s
+[diff]
+  # For Github-style word diffs
+  wordRegex = [^[:space:]]
+# color the UI!
+[color]
+  ui = auto
+[color "branch"]
+  # What colors should "git branch" show?
+  #current = yellow reverse # default black
+  #local = cyan # default yellow
+  #remote = green # default red
+[color "diff"]
+  # Color syntax: <foreground> <background>
+  # So "normal red" is normal foreground, red background
+  # BUT bold is a modifier, so "bold green red" means
+  #   "bold green" foreground, red background
+  whitespace = red reverse
+  plain = black
+  meta = cyan
+  frag = magenta bold
+  old = red
+  new = green
+  commit = yellow
+[color "status"]
+  # Options:
+  # header: the header text of the status message
+  # added/updated: added but not committed
+  # changed: changed but not added in the index
+  # untracked
+  # nobranch: the color the "no branch" warning is shown in (default red)
+  added = yellow # files deleted with "git rm" are this color too
+  changed = green # deleted items NOT done with "git rm" are this color too
+  untracked = cyan
 [help]
-	autocorrect = 1
+  autocorrect = 1
+[url "git@heroku.com:"]
+  insteadOf = heroku:
+[url "git://github.com/"]
+  # Read-only
+  insteadOf = gh:
+[url "git@github.com:"]
+  # With write access
+  insteadOf = wgh:
+[push]
+  # Push current branch even if you've never pushed it before
+  default = current
