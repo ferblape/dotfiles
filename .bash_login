@@ -2,7 +2,7 @@ export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/proyectos/windchime-stats/node_modules/forever/bin/:$PATH
 export EDITOR="/usr/local/bin/mvim -f"
-export NODE_PATH=~/.npm/
+export NODE_PATH=/usr/local/lib/node_modules
 export LC_CTYPE=en_US.UTF-8
 
 alias f='foreman start'
@@ -11,17 +11,13 @@ alias dns='sudo lookupd -flushcache'
 alias todo='mvim /Users/fernando/Dropbox/Documentos/trabajo/todo.tasks'
 alias notes='mvim /Users/fernando/Dropbox/Documentos/trabajo/notes.md'
 alias plain='mvim /Users/fernando/Dropbox/PlainText/notas.txt'
-alias actuable='cd /users/fernando/proyectos/actuable'
-alias mactuable='actuable; mvim Gemfile'
 alias apache='mate /etc/apache2/users/fernando.conf'
-alias hactuable='ssh www-data@178.79.171.223'
-alias router='sudo ifconfig en1 mtu 1452'
-alias kandypot='cd /users/fernando/proyectos/kandypot; rvm use 1.9.2@kandypot'
+alias router='sudo ifconfig en0 mtu 1452'
 alias ree='rvm use ree-1.8.7-2011.03'
 
 # Aliases Toldo
 alias toldomigration='bin/rake db:migrate; bin/annotate -i; RAILS_ENV=test bin/rake db:migrate'
-alias toldo='cd /users/fernando/proyectos/toldo; rvm use ruby-1.9.3-p0-perf@toldo'
+alias toldo='cd /users/fernando/proyectos/toldo'
 alias mtoldo='toldo; mvim Gemfile'
 
 # Aliases BeBanjo
@@ -35,6 +31,10 @@ alias mpanorama='panorama; mvim .'
 alias metadata='cd ~/proyectos/metadata'
 alias mmetadata='metadata; mvim .'
 alias sheriff='cd ~/proyectos/sheriff'
+
+# SSH
+alias id_bebanjo='ssh-add -D; ssh-add ~/.ssh/id_bebanjo_heroku'
+alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
 
 # Setting PATH for MacPython 2.5
 # The orginal version is saved in .bash_login.pysave
@@ -78,7 +78,7 @@ function __my_rvm_ruby_version {
 # MacPorts bash_completion
 # Load Git completion stuff from git-completion
 # http://repo.or.cz/w/git.git?a=blob_plain;f=contrib/completion/git-completion.bash
-source bin/git-completion.bash
+source ~/bin/git-completion.bash
 export GIT_PS1_SHOWDIRTYSTATE='true'
 # completion support for the github gem
 complete -o default -o nospace -F _git gh
@@ -130,7 +130,7 @@ function prompt {
   local WHITE="\[\033[0;37m\]"
   local WHITEBOLD="\[\033[1;37m\]"
   export PS1="${WHITE}\u${RED}@${PURPLE}\h ${CYAN}\w${WHITE} \$(__git_ps1 ' (%s)')$ "
-  export PS1="${BLUE}\$(__my_rvm_ruby_version)${PURPLE}\h ${CYAN}\w${WHITE} \$(__git_ps1 '(%s) ')$ "
+  export PS1="${BLUE}\$(__my_rvm_ruby_version)${CYAN}\w${WHITE} \$(__git_ps1 '(%s) ')$ "
   export PS1="\[\033[G\]$PS1"
 }
 
@@ -146,6 +146,5 @@ export RUBY_HEAP_FREE_MIN=500000
 
 # Auto jump
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
-
 
 prompt
