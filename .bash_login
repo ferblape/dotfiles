@@ -4,6 +4,7 @@ export PATH=$HOME/proyectos/windchime-stats/node_modules/forever/bin/:$PATH
 export EDITOR="/usr/local/bin/mvim -f"
 export NODE_PATH=/usr/local/lib/node_modules
 export LC_CTYPE=en_US.UTF-8
+export FC=/usr/local/bin/gfortran
 
 alias clean_orig="git status | awk '{print $2}' | grep orig | xargs rm"
 alias f='foreman start'
@@ -14,7 +15,7 @@ alias notes='mvim /Users/fernando/Dropbox/Documentos/trabajo/notes.md'
 alias plain='mvim /Users/fernando/Dropbox/PlainText/notas.txt'
 alias apache='mate /etc/apache2/users/fernando.conf'
 alias router='sudo ifconfig en0 mtu 1452'
-alias ree='rvm use ree-1.8.7-2011.03'
+alias ree='rvm use ree-1.8.7-2012.02'
 
 # Development
 alias tld='tail -f log/development.log'
@@ -28,7 +29,6 @@ alias toldomigration='bin/rake db:migrate; bin/annotate -i; RAILS_ENV=test bin/r
 alias toldo='cd /users/fernando/proyectos/toldo'
 alias mtoldo='toldo; mvim Gemfile'
 
-# Aliases BeBanjo
 alias stable='git checkout stable'
 alias movida='cd ~/proyectos/movida'
 alias mmovida='movida; mvim .'
@@ -39,6 +39,8 @@ alias mpanorama='panorama; mvim .'
 alias metadata='cd ~/proyectos/metadata'
 alias mmetadata='metadata; mvim .'
 alias sheriff='cd ~/proyectos/sheriff'
+
+alias rakemovida='bin/rake parallel:create[3] parallel:load_schema[3] parallel:spec[3]'
 
 # SSH
 alias id_bebanjo='ssh-add -D; ssh-add ~/.ssh/id_bebanjo_heroku'
@@ -83,9 +85,9 @@ function __my_rvm_ruby_version {
 
 ##### EXEC ###################################################################
 
-# MacPorts bash_completion
-# Load Git completion stuff from git-completion
-# http://repo.or.cz/w/git.git?a=blob_plain;f=contrib/completion/git-completion.bash
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 source ~/bin/git-completion.bash
 export GIT_PS1_SHOWDIRTYSTATE='true'
 # completion support for the github gem
@@ -137,8 +139,7 @@ function prompt {
   local CYAN="\[\033[0;36m\]"
   local WHITE="\[\033[0;37m\]"
   local WHITEBOLD="\[\033[1;37m\]"
-  export PS1="${WHITE}\u${RED}@${PURPLE}\h ${CYAN}\w${WHITE} \$(__git_ps1 ' (%s)')$ "
-  export PS1="${BLUE}\$(__my_rvm_ruby_version)${CYAN}\w${WHITE} \$(__git_ps1 '(%s) ')$ "
+  export PS1="${BLUE}\$(__my_rvm_ruby_version)${CYAN}\W${WHITE} \$(__git_ps1 '(%s) ')$ "
   export PS1="\[\033[G\]$PS1"
 }
 
@@ -148,11 +149,15 @@ export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
+export RUBY_FREE_MIN=$RUBY_HEAP_FREE_MIN
 
 # rvm 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Auto jump
 [[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
+
+# BJ utility
+eval "$(/Users/fernando/proyectos/bj/bin/bj init -)"
 
 prompt
