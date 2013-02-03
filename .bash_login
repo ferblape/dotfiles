@@ -64,6 +64,9 @@ alias gst='git status'
 alias p='git pull --rebase'
 alias P='git push'
 
+# Capistrano
+alias D='cap deploy'
+
 # Use Changes.app for git diffs (nice when diffing single files and folders)
 function gitdiff {
   [ $# -eq 7 ] && /usr/bin/env chdiff --wait "$2" "$5"
