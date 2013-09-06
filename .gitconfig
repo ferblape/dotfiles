@@ -57,16 +57,8 @@
   untracked = cyan
 [help]
   autocorrect = 1
-[url "git@heroku.com:"]
-  insteadOf = heroku:
-[url "git://github.com/"]
-  # Read-only
-  insteadOf = gh:
-[url "git@github.com:"]
-  # With write access
-  insteadOf = wgh:
 [push]
   # Push current branch even if you've never pushed it before
   default = current
 [pull]
-	rebase = true
+  rebase = true
