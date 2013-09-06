@@ -3,7 +3,6 @@
 --ignore-dir=vendor
 --ignore-dir=public/generated
 --sort-files
--a
 --type-add=ruby=.haml
 --type-add=ruby=.sass
 --type-add=ruby=.scss

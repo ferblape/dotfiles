@@ -29,6 +29,7 @@ alias toldomigration='bin/rake db:migrate; bin/annotate -i; RAILS_ENV=test bin/r
 alias toldo='cd /users/fernando/proyectos/toldo'
 alias mtoldo='toldo; mvim Gemfile'
 
+# BeBanjo
 alias stable='git checkout stable'
 alias movida='cd ~/proyectos/movida'
 alias mmovida='movida; mvim .'
@@ -39,8 +40,8 @@ alias mpanorama='panorama; mvim .'
 alias metadata='cd ~/proyectos/metadata'
 alias mmetadata='metadata; mvim .'
 alias sheriff='cd ~/proyectos/sheriff'
-
-alias rakemovida='bin/rake parallel:create[3] parallel:load_schema[3] parallel:spec[3]'
+alias rakemovida='bin/rake parallel:drop[3] parallel:create[3] parallel:load_schema[3] parallel:spec[3]'
+alias support='mvim ~/proyectos/support.wiki/Support-Weeklog-#-from-2013-March-4th-11th.md'
 
 # SSH
 alias id_bebanjo='ssh-add -D; ssh-add ~/.ssh/id_bebanjo_heroku'
@@ -154,11 +155,18 @@ export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 export RUBY_FREE_MIN=$RUBY_HEAP_FREE_MIN
 
+# Alfredos
+
+function alfredos {
+  curl -s "https://bebanjo.jottit.com/alfredos-rb" | grep "@" | sed 's/<[^>]*>//g'
+  echo `curl -s "https://bebanjo.jottit.com/alfredos-rb" | grep "@" | wc -l`
+}
+
 # rvm 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Auto jump
-[[ -f ~/.autojump/etc/profile.d/autojump.bash ]] && source ~/.autojump/etc/profile.d/autojump.bash
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # BJ utility
 eval "$(/Users/fernando/proyectos/bj/bin/bj init -)"
