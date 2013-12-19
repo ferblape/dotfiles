@@ -35,7 +35,11 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
+# Ruby #
+########
+tags
 .rvmrc
 bin/
 .exports
 .idea/
+config/projections.json
