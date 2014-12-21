@@ -1,0 +1,4 @@
+log/
+.git/
+tmp/
+tags
