@@ -2,14 +2,6 @@ export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin
 export PATH=$HOME/local/bin:$PATH
 export EDITOR="/usr/bin/vim -f"
 export LC_CTYPE=en_US.UTF-8
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-# BBJ ENV Variables
-
-export MOVIDA_PATH='/Users/fernando/proyectos/movida'
-export SCRIPTS_PATH='/Users/fernando/proyectos/scripts'
 
 # Utilities
 alias todo='v /Users/fernando/Dropbox/Documentos/trabajo/todo.md'
@@ -29,7 +21,6 @@ alias br='bundle exec rake'
 alias r='rake'
 
 # SSH
-alias id_bebanjo='ssh-add -D; ssh-add ~/.ssh/id_bebanjo_heroku'
 alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
 
 # Git
@@ -38,8 +29,10 @@ alias P='git push'
 
 # Capistrano
 alias D='cap production deploy'
+alias S='cap staging deploy'
 # Mina
 alias M='mina deploy'
+alias I='git pull && git push && mina staging deploy && mina production deploy'
 
 # Use Changes.app for git diffs (nice when diffing single files and folders)
 function gitdiff {
@@ -121,10 +114,9 @@ function prompt {
 # Auto jump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
-# BJ utility
-eval "$(/Users/fernando/proyectos/bj/bin/bj init -)"
-
+# Prompt
 prompt
 
+# Rbenv
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
