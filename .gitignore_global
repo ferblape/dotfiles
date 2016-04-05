@@ -1,3 +1,5 @@
+# Vim #
+#######
 *.swp
 
 # Compiled source #
@@ -39,7 +41,11 @@ Thumbs.db
 ########
 tags
 .rvmrc
-bin/
 .exports
 .idea/
 config/projections.json
+.byebug_history
+
+# Environment variables #
+#########################
+.env
