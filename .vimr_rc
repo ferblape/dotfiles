@@ -1,1 +1,2 @@
-open.quickly.ignore.patterns = */.git, */.hg, .DS_Store, */target, */*.xcodeproj, */.bundle, */public/system, */public/uploads, */public/capybara_test_assets, */tmp
+# open.quickly.ignore.patterns = */.git, .DS_Store, */.bundle, */public/system, */public/uploads, */public/capybara_test_assets, */tmp
+open.quickly.ignore.patterns = */.git, .DS_Store, */.bundle
