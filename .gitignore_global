@@ -37,15 +37,21 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-# Ruby #
-########
+# Ruby and Rails #
+##################
 tags
 .rvmrc
 .exports
 .idea/
 config/projections.json
 .byebug_history
+bin/test.rb
 
 # Environment variables #
 #########################
 .env
+.bundle/config
+
+# Redis #
+#########
+dump.rdb
