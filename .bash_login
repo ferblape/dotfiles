@@ -51,6 +51,12 @@ function __my_ruby_version {
   fi
 }
 
+function __docker_prompt {
+  if [ -n "$DOCKER_HOST" ]; then
+    echo "🐳 "
+  fi
+}
+
 ##### EXEC ###################################################################
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -107,7 +113,7 @@ function prompt {
   local CYAN="\[\033[0;36m\]"
   local WHITE="\[\033[0;37m\]"
   local WHITEBOLD="\[\033[1;37m\]"
-  export PS1="${BLUE}\$(__my_ruby_version)${CYAN}\W${WHITE} \$(__git_ps1 '(%s) ')$ "
+  export PS1="\$(__docker_prompt)${BLUE}\$(__my_ruby_version)${CYAN}\W${WHITE} \$(__git_ps1 '(%s) ')$ "
   export PS1="\[\033[G\]$PS1"
 }
 
