@@ -28,8 +28,8 @@ alias p='git pull --rebase'
 alias P='git push'
 
 # Capistrano
-alias D='cap production deploy'
-alias S='cap staging deploy'
+alias D='bundle exec cap production deploy'
+alias S='bundle exec cap staging deploy'
 # Mina
 alias M='mina deploy'
 alias I='git pull && git push && mina staging deploy && mina production deploy'
