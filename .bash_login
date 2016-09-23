@@ -57,6 +57,17 @@ function __docker_prompt {
   fi
 }
 
+function gh {
+  if [ -f .git/config ]; then
+    open 'https://'`grep github .git/config | awk -v FS='@' '{print $2}' | sed 's/:/\//g' | sed 's/\.git//g'`
+  fi
+}
+
+function ghi {
+  if [ -f .git/config ]; then
+    open 'https://'`grep github .git/config | awk -v FS='@' '{print $2}' | sed 's/:/\//g' | sed 's/\.git//g'`'/issues'
+  fi
+}
 ##### EXEC ###################################################################
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
