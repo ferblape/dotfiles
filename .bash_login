@@ -1,24 +1,24 @@
 export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/pgsql/bin:$PATH"
 export PATH=$HOME/local/bin:$PATH
-export EDITOR="/usr/bin/vim -f"
+export EDITOR="/usr/bin/vim"
 export LC_CTYPE=en_US.UTF-8
 
+# Load private environment variables
+if [ -f .env ]; then
+  source .env
+fi
+
 # Utilities
+alias v="mvim"
 alias todo='v /Users/fernando/Dropbox/Documentos/trabajo/todo.md'
-alias plain='v /Users/fernando/Dropbox/Apps/Plain.txt/notes.md'
-alias notes='v ~/Dropbox/Documentos/Trabajo/notes.md'
-alias v="open -a VimR"
-alias e_vimr="export EDITOR=\"open -a VimR\""
-alias e_vim="export EDITOR=\"/usr/bin/vim -f\""
 alias ll='ls -lha'
 
 # Development
 alias tld='tail -f log/development.log'
 alias tlt='tail -f log/test.log'
-alias rc='script/rails c'
 alias server='python -m SimpleHTTPServer'
 alias br='bundle exec rake'
-alias r='rake'
+alias t='touch tmp/restart.txt'
 
 # SSH
 alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
@@ -32,17 +32,13 @@ alias D='bundle exec cap production deploy'
 alias S='bundle exec cap staging deploy'
 # Mina
 alias M='mina deploy'
-alias I='git pull && git push && mina staging deploy && mina production deploy'
+
+# Docker
+alias dock='/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh'
 
 # Use Changes.app for git diffs (nice when diffing single files and folders)
 function gitdiff {
   [ $# -eq 7 ] && /usr/bin/env chdiff --wait "$2" "$5"
-}
-
-function giff {
-  export GIT_EXTERNAL_DIFF="gitdiff"
-  git diff "$1"
-  export -n GIT_EXTERNAL_DIFF
 }
 
 function __my_ruby_version {
@@ -68,12 +64,15 @@ function ghi {
     open 'https://'`grep github .git/config | awk -v FS='@' '{print $2}' | sed 's/:/\//g' | sed 's/\.git//g'`'/issues'
   fi
 }
+
 ##### EXEC ###################################################################
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-source ~/bin/git-completion.bash
+
+source ~/.bin/git-completion.bash
+
 export GIT_PS1_SHOWDIRTYSTATE='true'
 # completion support for the github gem
 complete -o default -o nospace -F _git gh
