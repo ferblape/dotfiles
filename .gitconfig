@@ -1,6 +1,6 @@
 [user]
 	name = Fernando Blat
-  email = ferblape@gmail.com
+	email = ferblape@gmail.com
 [alias]
   co = checkout
   ci = commit
