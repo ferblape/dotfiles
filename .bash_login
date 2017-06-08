@@ -10,7 +10,8 @@ fi
 
 # Utilities
 alias v="mvim"
-alias todo='v /Users/fernando/Dropbox/Documentos/trabajo/todo.md'
+alias todob='v /Users/fernando/Dropbox/Documentos/trabajo/todo-big.md'
+alias todos='v /Users/fernando/Dropbox/Documentos/trabajo/todo-small.md'
 alias ll='ls -lha'
 
 # Development
@@ -33,43 +34,7 @@ alias S='bundle exec cap staging deploy'
 # Mina
 alias M='mina deploy'
 
-# Docker
-alias dock='/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh'
-
-# Use Changes.app for git diffs (nice when diffing single files and folders)
-function gitdiff {
-  [ $# -eq 7 ] && /usr/bin/env chdiff --wait "$2" "$5"
-}
-
-function __my_ruby_version {
-  if [ -f .ruby-version ]; then
-    echo `rbenv local`" # "
-  fi
-}
-
-function __docker_prompt {
-  if [ -n "$DOCKER_HOST" ]; then
-    echo "🐳 "
-  fi
-}
-
-function gh {
-  if [ -f .git/config ]; then
-    open 'https://'`grep github .git/config | awk -v FS='@' '{print $2}' | sed 's/:/\//g' | sed 's/\.git//g'`
-  fi
-}
-
-function ghi {
-  if [ -f .git/config ]; then
-    open 'https://'`grep github .git/config | awk -v FS='@' '{print $2}' | sed 's/:/\//g' | sed 's/\.git//g'`'/issues'
-  fi
-}
-
-##### EXEC ###################################################################
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 source ~/.bin/git-completion.bash
 
@@ -77,61 +42,17 @@ export GIT_PS1_SHOWDIRTYSTATE='true'
 # completion support for the github gem
 complete -o default -o nospace -F _git gh
 
-##### COLORS #################################################################
-
-# CLI & Prompt colors
-export CLICOLOR=true
-# a black
-# b red
-# c green
-# d brown
-# e blue
-# f magenta
-# g cyan
-# h light grey
-# A bold black, usually shows up as dark grey
-# B bold red
-# C bold green
-# D bold brown, usually shows up as yellow
-# E bold blue
-# F bold magenta
-# G bold cyan
-# H bold light grey; looks like bright white
-# x default foreground or background
-# Order: dir - symlink - socket - pipe - exec - block special - char special - exec setuid - exec setgid - public dir sticky bit - public dir no sticky bit
-export LSCOLORS='Dxfxcxdxbxegedabagacad'
-
-# 30m - Black
-# 31m - Red
-# 32m - Green
-# 33m - Yellow
-# 34m - Blue
-# 35m - Purple
-# 36m - Cyan
-# 37m - White
-# Everything else is green...
-# 0 - Normal
-# 1 - Bold
-# 2 -
-function prompt {
-  local BLACK="\[\033[0;30m\]"
-  local RED="\[\033[0;31m\]"
-  local GREEN="\[\033[0;32m\]"
-  local YELLOW="\[\033[0;33m\]"
-  local BLUE="\[\033[0;34m\]"
-  local PURPLE="\[\033[0;35m\]"
-  local CYAN="\[\033[0;36m\]"
-  local WHITE="\[\033[0;37m\]"
-  local WHITEBOLD="\[\033[1;37m\]"
-  export PS1="\$(__docker_prompt)${BLUE}\$(__my_ruby_version)${CYAN}\W${WHITE} \$(__git_ps1 '(%s) ')$ "
-  export PS1="\[\033[G\]$PS1"
-}
-
 # Auto jump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Prompt
-prompt
+# prompt
+if [ -f /usr/local/share/gitprompt.sh ]; then
+  # GIT_PROMPT_THEME=Default
+  GIT_PROMPT_FETCH_REMOTE_STATUS=0
+  GIT_PROMPT_THEME=Custom
+  . /usr/local/share/gitprompt.sh
+fi
 
 # Rbenv
 export RBENV_ROOT=/usr/local/var/rbenv
