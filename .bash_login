@@ -12,6 +12,7 @@ fi
 alias v="mvim"
 alias todob='v /Users/fernando/Dropbox/Documentos/trabajo/todo-big.md'
 alias todos='v /Users/fernando/Dropbox/Documentos/trabajo/todo-small.md'
+alias todomanos='v /Users/fernando/Dropbox/Documentos/trabajo/manos.md'
 alias ll='ls -lha'
 
 # Development
@@ -20,6 +21,7 @@ alias tlt='tail -f log/test.log'
 alias server='python -m SimpleHTTPServer'
 alias br='bundle exec rake'
 alias t='touch tmp/restart.txt'
+alias cop='rubocop `git diff --name-only master..HEAD`'
 
 # SSH
 alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
@@ -46,13 +48,15 @@ complete -o default -o nospace -F _git gh
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Prompt
-# prompt
 if [ -f /usr/local/share/gitprompt.sh ]; then
   # GIT_PROMPT_THEME=Default
   GIT_PROMPT_FETCH_REMOTE_STATUS=0
   GIT_PROMPT_THEME=Custom
   . /usr/local/share/gitprompt.sh
 fi
+
+# Vi mode
+set -o vi
 
 # Rbenv
 export RBENV_ROOT=/usr/local/var/rbenv
