@@ -37,6 +37,10 @@ alias S='bundle exec cap staging deploy'
 # Mina
 alias M='mina deploy'
 
+ # ICIJ
+ alias icijsd="ssh offshore1 'cd icij-staging-deploy/trellis/; git pull && bin/deploy.sh staging icij.org'"
+ alias icijpd="ssh offshore1 'cd icij-production-deploy/trellis/; git pull && bin/deploy.sh production icij.org'"
+
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 source ~/.bin/git-completion.bash
@@ -55,9 +59,6 @@ if [ -f /usr/local/share/gitprompt.sh ]; then
   GIT_PROMPT_THEME=Custom
   . /usr/local/share/gitprompt.sh
 fi
-
-# Vi mode
-set -o vi
 
 # Rbenv
 export RBENV_ROOT=/usr/local/var/rbenv
