@@ -24,6 +24,9 @@ alias br='bundle exec rake'
 alias t='touch tmp/restart.txt'
 alias cop='rubocop `git diff --name-only master..HEAD`'
 
+# Help
+alias h_pg_restore='# pg_restore -c -x -O -d <db_name> <file_name>'
+
 # SSH
 alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
 
