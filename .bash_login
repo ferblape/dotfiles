@@ -23,6 +23,8 @@ alias server='python -m SimpleHTTPServer'
 alias br='bundle exec rake'
 alias t='touch tmp/restart.txt'
 alias cop='rubocop `git diff --name-only master..HEAD`'
+alias r='bin/spring rails'
+alias i18n='i18n-tasks normalize && i18-tasks health'
 
 # Help
 alias h_pg_restore='# pg_restore -c -x -O -d <db_name> <file_name>'
