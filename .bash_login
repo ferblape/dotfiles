@@ -4,8 +4,8 @@ export EDITOR="/usr/bin/vim"
 export LC_CTYPE=en_US.UTF-8
 
 # Load private environment variables
-if [ -f .env ]; then
-  source .env
+if [ -f ~/.env ]; then
+  source ~/.env
 fi
 
 # Utilities
