@@ -27,7 +27,7 @@ alias r='bin/spring rails'
 alias i18n='i18n-tasks normalize && i18n-tasks health'
 
 # Help
-alias h_pg_restore='# pg_restore -c -x -O -d <db_name> <file_name>'
+alias h_pg_restore='echo "pg_restore -c -x -O -d <db_name> <file_name>"'
 
 # SSH
 alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
