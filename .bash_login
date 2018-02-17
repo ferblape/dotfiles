@@ -23,7 +23,7 @@ alias tlt='tail -f log/test.log'
 alias server='python -m SimpleHTTPServer'
 alias br='bundle exec rake'
 alias t='touch tmp/restart.txt'
-alias cop='rubocop `git diff --name-only master..HEAD`'
+alias cop='rubocop `git diff --diff-filter=d --name-only master..HEAD`'
 alias r='bin/spring rails'
 alias i18n='i18n-tasks normalize && i18n-tasks health'
 
