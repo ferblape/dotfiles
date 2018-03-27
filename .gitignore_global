@@ -55,3 +55,7 @@ bin/test.rb
 # Redis #
 #########
 dump.rdb
+
+# Node.js #
+###########
+node_modules/
