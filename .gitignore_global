@@ -59,3 +59,4 @@ dump.rdb
 # Node.js #
 ###########
 node_modules/
+public/packs
