@@ -20,7 +20,7 @@ alias lssh='less ~/.ssh/config'
 # Development
 alias tld='tail -f log/development.log'
 alias tlt='tail -f log/test.log'
-alias server='python -m SimpleHTTPServer'
+alias server='php -S localhost:8000'
 alias br='bundle exec rake'
 alias t='touch tmp/restart.txt'
 alias cop='rubocop `git diff --diff-filter=d --name-only master..HEAD`'
