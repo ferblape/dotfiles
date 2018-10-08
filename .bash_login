@@ -28,7 +28,7 @@ alias br='bundle exec rake'
 alias t='touch tmp/restart.txt'
 alias cop='rubocop `git diff --diff-filter=d --name-only master..HEAD`'
 alias r='bin/spring rails'
-alias i18n='i18n-tasks normalize && i18n-tasks health'
+alias i18n='i18n-tasks normalize && i18n-tasks health && bin/rails i18n:js:export'
 
 # Help
 alias h_pg_restore='echo "pg_restore -c -x -O -d <db_name> <file_name>"'
