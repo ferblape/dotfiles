@@ -27,7 +27,7 @@ alias server='php -S localhost:8000'
 alias br='bundle exec rake'
 alias t='touch tmp/restart.txt'
 alias cop='rubocop `git diff --diff-filter=d --name-only master..HEAD`'
-alias r='bin/spring rails'
+alias r='bundle exec rspec'
 alias i18n='i18n-tasks normalize && i18n-tasks health && bin/rails i18n:js:export'
 
 # Help
@@ -81,3 +81,10 @@ if [ -f '/Users/fernando/proyectos/google-cloud-sdk/path.bash.inc' ]; then sourc
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/fernando/proyectos/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/fernando/proyectos/google-cloud-sdk/completion.bash.inc'; fi
+
+# Yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Iterm2 shell integration
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
