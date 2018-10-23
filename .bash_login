@@ -1,5 +1,7 @@
 export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/pgsql/bin:$PATH"
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.composer/vendor/bin:$PATH
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export EDITOR="/usr/bin/vim"
 export LC_CTYPE=en_US.UTF-8
 export DEV=$HOME/proyectos
@@ -81,9 +83,6 @@ if [ -f '/Users/fernando/proyectos/google-cloud-sdk/path.bash.inc' ]; then sourc
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/fernando/proyectos/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/fernando/proyectos/google-cloud-sdk/completion.bash.inc'; fi
-
-# Yarn
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Iterm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
