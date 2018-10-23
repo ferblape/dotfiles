@@ -2,3 +2,6 @@ log/
 .git/
 tmp/
 tags
+node_modules/
+packs/
+packs-test/
