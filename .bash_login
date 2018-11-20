@@ -31,6 +31,7 @@ alias t='touch tmp/restart.txt'
 alias cop='rubocop `git diff --diff-filter=d --name-only master..HEAD`'
 alias r='bundle exec rspec'
 alias i18n='i18n-tasks normalize && i18n-tasks health && bin/rails i18n:js:export'
+alias dump_gobierto_staging='scp ubuntu@staging01:$(ssh ubuntu@staging01 'ls -t /home/ubuntu/dumps/gobierto_staging*.sql.gz | head -1')'
 
 # Help
 alias h_pg_restore='echo "pg_restore -c -x -O -d <db_name> <file_name>"'
