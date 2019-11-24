@@ -2,13 +2,15 @@ export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export EDITOR="/usr/bin/vim"
+# export EDITOR="/usr/bin/vim"
+export EDITOR=/usr/local/bin/mvim
 export LC_CTYPE=en_US.UTF-8
 export DEV=$HOME/proyectos
 export DEV_DIR=$HOME/proyectos
 export PG_USERNAME=fernando
 export PG_HOST=localhost
 export PG_PASSWORD=
+export CKAN_ROOT=$DEV_DIR/ckan_local_root
 
 # Load private environment variables
 if [ -f ~/.env ]; then
@@ -19,6 +21,8 @@ fi
 alias v="mvim"
 alias todob='v /Users/fernando/Dropbox/Documentos/trabajo/todo-big.md'
 alias todos='v /Users/fernando/Dropbox/Documentos/trabajo/todo-small.md'
+alias gftrade='v /Users/fernando/Dropbox/Documentos/trabajo/gftrade.md'
+alias opendch='v /Users/fernando/Dropbox/Documentos/trabajo/opendch.md'
 alias ll='ls -lha'
 alias lssh='less ~/.ssh/config'
 
@@ -27,11 +31,12 @@ alias tld='tail -f log/development.log'
 alias tlt='tail -f log/test.log'
 alias server='php -S localhost:8000'
 alias br='bundle exec rake'
+alias bjs='bundle exec jekyll s'
 alias t='touch tmp/restart.txt'
 alias cop='rubocop `git diff --diff-filter=d --name-only master..HEAD`'
 alias r='bundle exec rspec'
 alias i18n='i18n-tasks normalize && i18n-tasks health && bin/rails i18n:js:export'
-alias dump_gobierto_staging='scp ubuntu@staging01:$(ssh ubuntu@staging01 'ls -t /home/ubuntu/dumps/gobierto_staging*.sql.gz | head -1')'
+alias paloalto='rm -rf $HOME/Library/Application\ Support/PaloAltoNetworks/'
 
 # Help
 alias h_pg_restore='echo "pg_restore -c -x -O -d <db_name> <file_name>"'
@@ -42,16 +47,15 @@ alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
 # Git
 alias p='git pull --rebase'
 alias P='git push'
+alias gcm='git checkout master'
+alias gcs='git checkout staging'
+alias gmm='git merge master'
 
 # Capistrano
 alias D='bundle exec cap production deploy'
 alias S='bundle exec cap staging deploy'
 # Mina
 alias M='mina deploy'
-
- # ICIJ
- alias icijsd="ssh offshore1 'cd icij-staging-deploy/trellis/; git pull && bin/deploy.sh staging icij.org'"
- alias icijpd="ssh offshore1 'cd icij-production-deploy/trellis/; git pull && bin/deploy.sh production icij.org'"
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
@@ -76,15 +80,62 @@ fi
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Autcomplete PT
-eval "$(pt --completion)"
+# Nvm
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/fernando/proyectos/google-cloud-sdk/path.bash.inc' ]; then source '/Users/fernando/proyectos/google-cloud-sdk/path.bash.inc'; fi
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/fernando/proyectos/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/fernando/proyectos/google-cloud-sdk/completion.bash.inc'; fi
+find-up () {
+    path=$(pwd)
+    while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+        path=${path%/*}
+    done
+    echo "$path"
+}
 
-# Iterm2 shell integration
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+cdnvm(){
+    cd "$@";
+    nvm_path=$(find-up .nvmrc | tr -d '[:space:]')
 
+    # If there are no .nvmrc file, use the default nvm version
+    if [[ ! $nvm_path = *[^[:space:]]* ]]; then
+
+        declare default_version;
+        default_version=$(nvm version default);
+
+        # If there is no default version, set it to `node`
+        # This will use the latest version on your machine
+        if [[ $default_version == "N/A" ]]; then
+            nvm alias default node;
+            default_version=$(nvm version default);
+        fi
+
+        # If the current version is not the default version, set it to use the default version
+        if [[ $(nvm current) != "$default_version" ]]; then
+            nvm use default;
+        fi
+
+        elif [[ -s $nvm_path/.nvmrc && -r $nvm_path/.nvmrc ]]; then
+        declare nvm_version
+        nvm_version=$(<"$nvm_path"/.nvmrc)
+
+        declare locally_resolved_nvm_version
+        # `nvm ls` will check all locally-available versions
+        # If there are multiple matching versions, take the latest one
+        # Remove the `->` and `*` characters and spaces
+        # `locally_resolved_nvm_version` will be `N/A` if no local versions are found
+        locally_resolved_nvm_version=$(nvm ls --no-colors "$nvm_version" | tail -1 | tr -d '\->*' | tr -d '[:space:]')
+
+        # If it is not already installed, install it
+        # `nvm install` will implicitly use the newly-installed version
+        if [[ "$locally_resolved_nvm_version" == "N/A" ]]; then
+            nvm install "$nvm_version";
+        elif [[ $(nvm current) != "$locally_resolved_nvm_version" ]]; then
+            nvm use "$nvm_version";
+        fi
+    fi
+}
+alias cd='cdnvm'
