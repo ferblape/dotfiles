@@ -5,3 +5,8 @@ tags
 node_modules/
 packs/
 packs-test/
+documentation/
+doc/
+bower_components/
+*.lock
+*.log
