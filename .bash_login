@@ -42,8 +42,12 @@ alias i18n='i18n-tasks normalize && i18n-tasks health && bin/rails i18n:js:expor
 alias paloalto='rm -rf $HOME/Library/Application\ Support/PaloAltoNetworks/'
 alias bjs='bundle exec jekyll s --future --incremental --livereload'
 
+# Tmux
+alias tls='tmux list-sessions'
+alias ta='tmux a -t'
+
 # Help
-alias h_pg_restore='echo "pg_restore -c -x -O -d <db_name> <file_name>"'
+alias h_pg_restore='echo "pg_restore -c --if-exists -x -O -d <db_name> <file_name>"'
 
 # SSH
 alias id_personal='ssh-add -D; ssh-add ~/.ssh/id_dsa'
