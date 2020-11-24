@@ -13,7 +13,7 @@
 [dude]
 	interval = 30
 [core]
-	excludesfile = /Users/fernando/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = /usr/bin/vim
 [color]
   ui = auto

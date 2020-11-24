@@ -1,1 +1,63 @@
+# Vim #
+#######
+*.swp
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Ruby and Rails #
+##################
+tags
+.rvmrc
+.exports
+.idea/
+config/projections.json
+.byebug_history
+bin/test.rb
+
+# Environment variables #
+#########################
 .env
+.bundle/config
+.bundle/cache
+
+# Redis #
+#########
+dump.rdb
+
+# Node.js #
+###########
+node_modules/
+public/packs
+dist/

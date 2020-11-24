@@ -1,0 +1,3 @@
+#!/bin/bash
+
+keyring get ansible-sudo ubuntu | xclip -sel clip
