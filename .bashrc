@@ -126,6 +126,7 @@ export PATH="/usr/local/bin:/opt/local/bin/:/usr/local/sbin:/usr/local/mysql/bin
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export EDITOR=/usr/bin/vim
 export LC_CTYPE=en_US.UTF-8
@@ -141,7 +142,6 @@ if [ -f ~/.env ]; then
 fi
 
 # Utilities
-alias v="vim"
 alias todob='v /Users/fernando/Dropbox/Documentos/trabajo/todo-big.md'
 alias todos='v /Users/fernando/Dropbox/Documentos/trabajo/todo-small.md'
 alias gftrade='v /Users/fernando/Dropbox/Documentos/trabajo/gftrade.md'
