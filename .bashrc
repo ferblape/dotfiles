@@ -193,6 +193,12 @@ complete -o default -o nospace -F _git gh
 # Auto jump
 . /usr/share/autojump/autojump.sh
 
+# SSH + Tmux
+function tssh () {
+  ssh -t $@ "tmux new-session -s blat || tmux attach -t blat"
+}
+
+
 # Prompt
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
   export GIT_PROMPT_ONLY_IN_REPO=1
